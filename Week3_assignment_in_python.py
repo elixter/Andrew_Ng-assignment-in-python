@@ -1,36 +1,39 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import math
 
 
 # sigmoid function
 def sigmoid(z):
-    g = np.zeros(z.shape)
     g = 1 / (1 + np.exp(np.negative(z)))
 
     return g
 
 
+def sigmoid(z):
+    g = 1 / (1 + math.exp(-z))
+
+
 def hypothesis(theta, x):
-    return sigmoid(np.transpose(theta) * x)
+    return sigmoid(np.multiply(theta, x))
 
 
 # costFunction for Logistic Regression
-def costFunction(theta, data, label):
-    m = data.shape[0]
+def costFunction(theta, x, y):
+    m = x.shape[0]
     sum = 0
     for i in range(m):
-        sum += label[i] * np.log(hypothesis(theta, data[i])) - (1 - label[i]) * np.log(1 - hypothesis(theta, data[i]))
+        sum += y[i] * np.log(hypothesis(theta, x[i])) - (1 - y[i]) * np.log(1 - hypothesis(theta, x[i]))
 
     return sum / m
 
 
 # theta j 에 대한 편미분값
-def deriveCost(theta, data, label):
-    m = data.shape[0]
+def deriveCost(theta, x, y):
+    m = x.shape[0]
     J = 0
 
     for i in range(m):
-        J += (hypothesis(theta, data[i]) - label[i]) * data[i]
+        J += (hypothesis(theta, x[i]) - y[i]) * x[i]
 
     return J / m
 
@@ -40,9 +43,3 @@ def deriveCost(theta, data, label):
 
 
 
-
-test = np.array([1, 2, 3, 4, 5, 6])
-test2 = np.array([1, 2, 3, 4, 5, 6])
-
-
-print(costFunction([2], np.array([3]), np.array([3])))
