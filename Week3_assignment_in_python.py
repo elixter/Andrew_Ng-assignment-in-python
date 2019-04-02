@@ -65,6 +65,12 @@ def Logistic_Regression(theta, x, y, epoch=400, alpha=0.001):
             theta = tmp_theta
             tmp = tmp2
 
+        process_percent = int(i / epoch * 100)
+
+        proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %'
+
+        print(proc_string)
+
     return theta
 
 

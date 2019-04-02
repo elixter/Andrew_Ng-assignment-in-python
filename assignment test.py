@@ -26,13 +26,13 @@ for row in data:
 
 
 # 데이터 시각화
-plt.figure()
-
-plt.xlabel('Exam 1 score')
-plt.ylabel('Exam 2 score')
-plt.scatter(admit_x1, admit_x2, marker='+')
-plt.scatter(non_admit_x1, non_admit_x2, marker='o')
-plt.show()
+# plt.figure()
+#
+# plt.xlabel('Exam 1 score')
+# plt.ylabel('Exam 2 score')
+# plt.scatter(admit_x1, admit_x2, marker='+')
+# plt.scatter(non_admit_x1, non_admit_x2, marker='o')
+# plt.show()
 
 
 initial_theta = np.zeros([len(data[0]), 1], dtype=np.float32)
@@ -56,17 +56,9 @@ x = range(100)
 
 result_theta = test_theta
 
-week3.deriveCost(initial_theta, np.array(x_data), np.array(y_data), 0)
-week3.deriveCost(initial_theta, np.array(x_data), np.array(y_data), 1)
-week3.deriveCost(initial_theta, np.array(x_data), np.array(y_data), 2)
-
-# for i in range(10):
-#     result_theta = week3.Gradient_Descent(result_theta, np.array(x_data), np.array(y_data), alpha=0.001)
-
 result_theta = week3.Logistic_Regression(result_theta, np.array(x_data), np.array(y_data), alpha=0.001)
 
-print(result_theta)
-
+# 시각화
 plt.figure()
 plt.xlabel('Exam 1 score')
 plt.ylabel('Exam 2 score')
