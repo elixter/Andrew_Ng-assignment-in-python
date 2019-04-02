@@ -38,21 +38,25 @@ def deriveCost(theta, x, y, j):
 def Gradient_Descent(theta, x, y, alpha=0.001):
     n = theta.shape[0]
     tmp = np.zeros(theta.shape, dtype=np.float32)
+
+    # theta 업데이트는 한번에 해줘야하기때문에 tmp에 임시 저장
     for i in range(n):
         tmp[i][0] = theta[i][0] - alpha * deriveCost(theta, x, y, i)
-    print(theta)
+
     theta = tmp
-    print(theta)
+
     return theta
 
 
 def Logistic_Regression(theta, x, y, epoch=400, alpha=0.001):
     tmp = costFunction(theta, x, y)
+
+    # epoch 는 학습 반복 횟수
     for i in range(epoch):
         tmp_theta = Gradient_Descent(theta, x, y, alpha)
         tmp2 = costFunction(tmp_theta, x, y)
-        print([tmp, tmp2])
 
+    # costFunction의 값이 최소가 되어야 하므로 이전 값 보다 작을 때 업데이트 시켜줌
         if tmp > tmp2:
             theta = tmp_theta
             tmp = tmp2
