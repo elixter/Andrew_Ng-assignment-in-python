@@ -19,7 +19,9 @@ def costFunction(theta, x, y):
     for i in range(m):
         sum += -y[i] * np.log(hypothesis(theta, x[i])) - (1 - y[i]) * np.log(1 - hypothesis(theta, x[i]))
 
-    return sum / m
+    result = sum / m
+
+    return result
 
 
 # theta j 에 대한 편미분값
@@ -31,7 +33,9 @@ def deriveCost(theta, x, y, j):
     for i in range(m):
         J += (hypothesis(theta, x[i]) - y[i]) * x[i][j]
 
-    return J / m
+    result = J / m
+
+    return result
 
 
 # alpha == learning rate
