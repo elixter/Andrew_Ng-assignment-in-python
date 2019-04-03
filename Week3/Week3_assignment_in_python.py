@@ -70,8 +70,10 @@ def logistic_regression(theta, x, y, epoch=400, alpha=0.001):
         process_percent = int(i / epoch * 100)
         correct = 0
 
-        for i in x:
-            if (-((theta[0][0] + theta[1][0] * i[1]) /theta[2][0]) <= i[2]):
+        for i in range(x.shape[0]):
+            if (hypothesis(theta, x[i]) < 0.5 and y[i] == 0):
+                correct += 1
+            elif (hypothesis(theta, x[i]) >= 0.5 and y[i] == 1):
                 correct += 1
 
         accuracy = correct / x.shape[0] * 100
@@ -131,7 +133,6 @@ def cost_function_reg(theta, x, y, rate=0.1):
     for j in range(n):
         theta_sum = theta[j][0] ** 2        # sum of theta(j) square
 
-
     result = origin_cost + rate / (2 * m) * theta_sum
 
     return result
@@ -175,20 +176,22 @@ def logistic_regression_reg(theta, x, y, epoch=400, alpha=0.001, rate=0.1):
             tmp = tmp2
 
         process_percent = int(i / epoch * 100)
-        # correct = 0
-        #
-        # for i in x:
-        #     if (-((theta[0][0] + theta[1][0] * i[1]) / theta[2][0]) <= i[2]):
-        #         correct += 1
-        #
-        # accuracy = correct / x.shape[0] * 100
 
-        proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %'
-        # acc_str = 'Accuracy(%) : ' + str(accuracy) + '%\n'
+        correct = 0
+
+        for i in range(x.shape[0]):
+            if (hypothesis(theta, x[i]) < 0.5 and y[i] == 0):
+                correct += 1
+            elif (hypothesis(theta, x[i]) >= 0.5 and y[i] == 1):
+                correct += 1
+
+        accuracy = correct / x.shape[0] * 100
+
+        proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %\n'
+        acc_str = 'Accuracy(%) : ' + str(accuracy) + '%\n'
 
         print(proc_string)
-        # print(acc_str)
-
+        print(acc_str)
 
     return theta
 

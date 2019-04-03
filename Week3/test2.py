@@ -1,11 +1,11 @@
-import Week3_assignment_in_python as week3
+from Week3 import Week3_assignment_in_python as week3
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
 
 data = []
 
-with open('resource/ex2data2.csv', 'r', encoding='UTF8') as file:
+with open('../resource/ex2data2.csv', 'r', encoding='UTF8') as file:
     csv_reader = csv.reader(file, delimiter=',')
     for row in csv_reader:
         data_info = [float(row[0]), float(row[1]), int(row[2])]
