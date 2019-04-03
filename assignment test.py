@@ -48,7 +48,7 @@ for row in data:
     x_data.append(set)
     y_data.append(row[2])
 
-result = week3.costFunction(initial_theta, np.array(x_data), np.array(y_data))
+result = week3.cost_function(initial_theta, np.array(x_data), np.array(y_data))
 print(result)
 
 x = range(100)
@@ -56,7 +56,7 @@ x = range(100)
 
 result_theta = test_theta
 
-result_theta = week3.Logistic_Regression(result_theta, np.array(x_data), np.array(y_data), alpha=0.001)
+result_theta = week3.logistic_regression(result_theta, np.array(x_data), np.array(y_data), alpha=0.001)
 
 # 시각화
 plt.figure()
@@ -67,3 +67,8 @@ plt.scatter(non_admit_x1, non_admit_x2, marker='o')
 plt.axis([0, 100, 0, 100])
 plt.plot(x, -((result_theta[0][0] + result_theta[1][0] * x) / result_theta[2][0]))
 plt.show()
+
+
+test_arr = np.array([45, 85], dtype=np.float32)
+
+week3.predict(result_theta, test_arr)
