@@ -10,7 +10,7 @@ def sigmoid(z):
 
 
 def hypothesis(theta, x):
-    return sigmoid(np.sum(np.transpose(theta) * x))
+    return sigmoid(np.dot(np.transpose(theta), x))
 
 
 # costFunction for Logistic Regression
@@ -73,13 +73,13 @@ def logistic_regression(theta, x, y, epoch=400, alpha=0.001):
         for i in range(x.shape[0]):
             if (hypothesis(theta, x[i]) < 0.5 and y[i] == 0):
                 correct += 1
-            elif (hypothesis(theta, x[i]) >= 0.5 and y[i] == 1):
+            if (hypothesis(theta, x[i]) >= 0.5 and y[i] == 1):
                 correct += 1
 
         accuracy = correct / x.shape[0] * 100
 
         proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %'
-        acc_str = 'Accuracy(%) : ' + str(accuracy) + '%\n'
+        acc_str = 'Accuracy(%) : ' + str(accuracy) + ' %\n'
 
         print(proc_string)
         print(acc_str)
@@ -180,15 +180,17 @@ def logistic_regression_reg(theta, x, y, epoch=400, alpha=0.001, rate=0.1):
         correct = 0
 
         for i in range(x.shape[0]):
-            if (hypothesis(theta, x[i]) < 0.5 and y[i] == 0):
+            h = hypothesis(theta, x[i])
+            if (h < 0.5 and y[i] == 0):
                 correct += 1
-            elif (hypothesis(theta, x[i]) >= 0.5 and y[i] == 1):
+
+            if (h >= 0.5 and y[i] == 1):
                 correct += 1
 
         accuracy = correct / x.shape[0] * 100
 
-        proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %\n'
-        acc_str = 'Accuracy(%) : ' + str(accuracy) + '%\n'
+        proc_string = 'Learning Process(%) : ' + str(process_percent) + ' %'
+        acc_str = 'Accuracy(%) : ' + str(accuracy) + ' %\n'
 
         print(proc_string)
         print(acc_str)

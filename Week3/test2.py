@@ -61,9 +61,9 @@ test_theta = np.random.randn(mapped_data.shape[1], 1) + 1
 
 print(mapped_data.shape[1])
 
-result = week3.logistic_regression_reg(test_theta, mapped_data, y_data)
+result = week3.logistic_regression_reg(test_theta, mapped_data, y_data, rate=0.3, alpha=0.003)
 
 valid_data = np.array([[-0.25, 1.5]]) # 검증? 데이터
 mapped_valid_data = week3.map_feature(valid_data) # 데이터를 맵핑해준 후 분류기에 넣어야함
 
-week3.predict_reg(result, week3.map_feature(mapped_valid_data))
+week3.predict_reg(result, np.transpose(week3.map_feature(mapped_valid_data)))
