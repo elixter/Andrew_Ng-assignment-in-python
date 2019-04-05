@@ -28,6 +28,7 @@ def cost_function_vec(X, theta):
     return X_theta
 
 
+# 이부분 부터 다시 생각하며 고쳐야함
 def derivative_cost_function_vec(theta, x, y):
     m, n = x.shape
 
@@ -40,3 +41,38 @@ def derivative_cost_function_vec(theta, x, y):
     d = (1 / m) * np.dot(np.transpose(x), h)
 
     return d
+
+
+# rate means lambda
+def derivative_cost_function_reg_vec(theta, x, y, rate=0.01):
+    m, n = x.shape
+
+    dJ = derivative_cost_function_vec(theta, x, y)
+
+    for j in range(1, n):
+        dJ[j] += rate / m * theta[j]
+
+    return dJ
+
+
+def gradient_descent_reg_vec(theta, x, y, rate=0.01, alpha=0.001):
+    m, n = x.shape
+
+    theta = np.dot(alpha, derivative_cost_function_reg_vec(theta, x, y, rate))
+
+    return theta
+
+
+def logistic_regression_reg_vec(theta, x, y, rate=0.01, alpha=0.001, epoch=400)
+    m, n = x.shape
+
+    tmp_cost = cost_function_vec(x, theta)
+
+    for i in range(epoch):
+        tmp_theta = gradient_descent_reg_vec(theta, x, y, rate, alpha)
+
+        tmp_cost =
+
+
+
+def one_vs_all_classification(theta, x, y):
