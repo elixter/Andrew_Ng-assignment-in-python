@@ -1,16 +1,21 @@
 import numpy as np
 import math
 
+EPSILON = 0.0000001
 
 # sigmoid function
 def sigmoid(z):
     g = 1.0 / (1.0 + np.exp(np.negative(z)))
+    if (g == 1.0):
+        g -= EPSILON
+    elif (g == 0.0):
+        g += EPSILON
 
     return g
 
 
 def hypothesis(theta, x):
-    return sigmoid(np.dot(np.transpose(theta), x))
+    return sigmoid(np.dot(np.transpose(theta), np.transpose(x)))
 
 
 # costFunction for Logistic Regression
@@ -20,6 +25,9 @@ def cost_function(theta, x, y):
     for i in range(m):
         h = hypothesis(theta, x[i])
         sum += -y[i] * np.log(h) - (1 - y[i]) * np.log(1 - h)
+
+
+    print(sum)
 
     result = sum / m
 
