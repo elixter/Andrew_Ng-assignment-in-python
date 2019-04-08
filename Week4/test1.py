@@ -23,5 +23,5 @@ test_theta = np.random.randn(data.shape[1], 1) + 30
 
 
 result_theta = week4.one_vs_all_classification(test_theta, data, label, 10)
-result = week4.one_vs_all_predict(result_theta, tran_x[1])
+result = week4.one_vs_all_predict(result_theta, data[1])
 print(result.argmax(), result[result.argmax()])
