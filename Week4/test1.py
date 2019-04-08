@@ -15,11 +15,13 @@ data = np.array(X, dtype=np.float32)
 # label
 label = np.array(y, dtype=np.float32)
 
+m, n = data.shape
+
+X = np.hstack((np.ones((m, 1)), data))
+
+test_theta = np.random.randn(data.shape[1], 1) + 30
 
 
-#data = data / data.max()
-
-test_theta = np.random.randn(data.shape[1], 1) + 1
-
-print(week4.cost_function_vec(test_theta, data, label))
-print(week4.derivative_cost_function_vec(test_theta, data, label))
+result_theta = week4.one_vs_all_classification(test_theta, data, label, 10)
+result = week4.one_vs_all_predict(result_theta, tran_x[1])
+print(result.argmax(), result[result.argmax()])
